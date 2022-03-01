@@ -4,3 +4,11 @@
 body{
     font-family: 'Fredoka', sans-serif;
 }
+#showSingle{
+    width: 35rem;
+    margin-top: 50px;
+}
+.feature-images{
+    width: 25px;
+    margin-right: 10px;
+}

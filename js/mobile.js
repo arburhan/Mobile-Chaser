@@ -20,7 +20,7 @@ const showSearchResult = mobiles =>{
                 <h2 class="card-title">${mobile.phone_name}</h2>
                 <h3 class ="card-title">${mobile.brand}</h3>
                 <div class="card-footer border-0 bg-transparent">
-                    <button class="btn btn-primary">Explore</button>
+                    <button onclick="loadDetails('${mobile.slug}')" class="btn btn-primary">Explore</button>
                 </div>
             </div>
         </div>
@@ -28,6 +28,32 @@ const showSearchResult = mobiles =>{
         showResultDivId.appendChild(childDiv);
         console.log(mobile);
     });
-
-    //
 }
+// load details
+const loadDetails=ID=>{
+    const url = `https://openapi.programming-hero.com/api/phone/${ID}`;
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>showSingle(data.data));
+    
+}
+const showSingle=mobileId=>{
+    const singleDivId = document.getElementById('showSingle');
+    singleDivId.innerHTML=`
+        <img src="${mobileId.image}" class="card-img-top img-fluid w-50" alt="...">
+        <div class="card-body">
+            <h2 class="card-title">${mobileId.name}</h2>
+            <h3 class ="card-text"><img class="feature-images" src="./images/brand-image.png">${mobileId.brand}</h3>
+            <h4 class="card-text">Main Features</h4>
+            <p class ="card-tex">${mobileId.releaseDate}</p>
+            <p class ="card-tex"><img class="feature-images" src="./images/cpu.png">${mobileId.mainFeatures.chipSet}</p>
+            <p class ="card-tex"><img class="feature-images" src="./images/display.png">${mobileId.mainFeatures.displaySize}</p>
+            <p class ="card-tex"><img class="feature-images" src="./images/memory-card.png">${mobileId.mainFeatures.storage}</p>
+            <div class="card-footer border-0 bg-transparent">
+            </div>
+        </div>
+    `;
+    console.log(mobileId);
+}
+
+{/* <button onclick="loadDetails('${mobileId.slug}')" class="btn btn-primary">Explore</button> */}
