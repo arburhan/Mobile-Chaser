@@ -44,11 +44,20 @@ const showSingle=mobileId=>{
         <div class="card-body">
             <h2 class="card-title">${mobileId.name}</h2>
             <h3 class ="card-text"><img class="feature-images" src="./images/brand-image.png">${mobileId.brand}</h3>
-            <h4 class="card-text">Main Features</h4>
+
+            <h4 class="card-text text-success fw-bold">Main Features</h4>
             <p class ="card-tex">${mobileId.releaseDate}</p>
             <p class ="card-tex"><img class="feature-images" src="./images/cpu.png">${mobileId.mainFeatures.chipSet}</p>
             <p class ="card-tex"><img class="feature-images" src="./images/display.png">${mobileId.mainFeatures.displaySize}</p>
             <p class ="card-tex"><img class="feature-images" src="./images/memory-card.png">${mobileId.mainFeatures.storage}</p>
+
+            <h4 class="card-text text-warning fw-bold">Other Features</h4>
+            <p class="card-text"><span class="other-feature">Bluetooth: </span> ${mobileId.others.Bluetooth}</p>
+            <p class="card-text"><span class="other-feature">GPS: </span> ${mobileId.others.GPS}</p>
+            <p class="card-text"><span class="other-feature">NFC: </span>${mobileId.others.NFC}</p>
+            <p class="card-text"><span class="other-feature">Radio: </span> ${mobileId.others.Radio}</p>
+            <p class="card-text"><span class="other-feature">USB: </span> ${mobileId.others.USB}</p>
+            <p class="card-text"><span class="other-feature">WLAN: </span> ${mobileId.others.WLAN}</p>
             <div class="card-footer border-0 bg-transparent">
             </div>
         </div>
