@@ -20,14 +20,28 @@ const searchMobile = () =>{
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
         fetch(url)
         .then(res => res.json())
-        .then(data => showSearchResult(data.data));
+        .then(data => showSearchResult(data.data))
+        .catch(error=>displayError(error));
     }
     // clear input value
     searchFieldId.value = '';
 }
+// error handle
+const displayError=(error)=>{
+    console.log(error)
+}
+// search section
 const showSearchResult = mobiles =>{
+    showResultDivId.textContent = '';
     // single value display none
     singleDivId.style.display='none';
+    if(mobiles.length == 0){
+        errorMsg.style.display='block';
+        errorMsg.innerHTML=`
+            <h1 class="text-danger py-4">Results Not Found</h1>
+            <img class="img-fluid" src="./images/resultNotFound.gif">
+        `;
+    }
     mobiles.forEach(mobile=>{
         const childDiv = document.createElement('div');
         childDiv.classList.add('col', 'text-center');
