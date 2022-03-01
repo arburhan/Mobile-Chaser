@@ -45,6 +45,12 @@ const showSingle=mobileId=>{
     // hide search all result
     showResultDivId.style.display='none';
     singleDivId.style.display='block';
+    // sensor details
+    const sensorArray = mobileId.mainFeatures.sensors;
+    // sensorArray.forEach(sensor=>{
+    //     console.log(sensor);
+    // });
+
     singleDivId.innerHTML=`
         <img src="${mobileId.image}" class="card-img-top img-fluid w-50" alt="...">
         <div class="card-body">
@@ -56,7 +62,7 @@ const showSingle=mobileId=>{
             <p class ="card-tex"><img class="feature-images" src="./images/cpu.png">${mobileId.mainFeatures.chipSet}</p>
             <p class ="card-tex"><img class="feature-images" src="./images/display.png">${mobileId.mainFeatures.displaySize}</p>
             <p class ="card-tex"><img class="feature-images" src="./images/memory-card.png">${mobileId.mainFeatures.storage}</p>
-            <p id="sensorId" class="card-text"></p>
+            <p id="sensorId" class="card-text"><span class="other-feature"> Sensors: </span>${sensorArray.join(', ')}</p>
             <!-- Other Features -->
             <h4 class="card-text text-warning fw-bold">Other Features</h4>
             <p class="card-text"> <span class="other-feature"> Bluetooth: </span> ${mobileId.others.Bluetooth}</p>
