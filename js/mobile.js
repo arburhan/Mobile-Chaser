@@ -2,14 +2,28 @@
 const singleDivId = document.getElementById('showSingle');
 // show result id
 const showResultDivId = document.getElementById('showResults');
+// error message id 
+const errorMsg = document.getElementById('errorMsg');
 // search function *arrow
 const searchMobile = () =>{
     const searchFieldId = document.getElementById('search-field');
     const searchText = searchFieldId.value;
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-    fetch(url)
-    .then(res => res.json())
-    .then(data => showSearchResult(data.data));
+    if(searchText == ''){
+        errorMsg.style.display='block';
+        errorMsg.innerHTML=`
+            <h1 class="text-danger py-4">Please write mobile name</h1>
+            <img class="img-fluid" src="./images/writing-notes.gif">
+        `;
+    }
+    else{
+        errorMsg.style.display='none';
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+        fetch(url)
+        .then(res => res.json())
+        .then(data => showSearchResult(data.data));
+    }
+    // clear input value
+    searchFieldId.value = '';
 }
 const showSearchResult = mobiles =>{
     // single value display none
@@ -49,7 +63,6 @@ const showSingle=mobileId=>{
     const sensorArray = mobileId.mainFeatures.sensors;
     // new div
     const firstDiv = document.createElement('div');
-    
     firstDiv.innerHTML=`
         <img src="${mobileId.image}" class="card-img-top img-fluid w-50" alt="...">
         <div class="card-body">
@@ -67,9 +80,8 @@ const showSingle=mobileId=>{
         </div>
     `;
     singleDivId.appendChild(firstDiv);
-    // sensor condition
+    // other feature condition
     const secondDiv = document.createElement('div');
-    
     if(!mobileId.others){
         console.log(3);
     }

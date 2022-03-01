@@ -16,3 +16,6 @@ body{
 .other-feature{
     font-weight: bold;
 }
+#errorMsg{
+    display: none;
+}
