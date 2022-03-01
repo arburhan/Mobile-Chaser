@@ -6,9 +6,10 @@ const showResultDivId = document.getElementById('showResults');
 const errorMsg = document.getElementById('errorMsg');
 // search function *arrow
 const searchMobile = () =>{
+    singleDivId.textContent = '';
     const searchFieldId = document.getElementById('search-field');
     const searchText = searchFieldId.value;
-    if(searchText == ''){
+    if(searchText === ''){
         errorMsg.style.display='block';
         errorMsg.innerHTML=`
             <h1 class="text-danger py-4">Please write mobile name</h1>
@@ -28,10 +29,11 @@ const searchMobile = () =>{
 }
 // error handle
 const displayError=(error)=>{
-    console.log(error)
+    console.log(error);
 }
 // search section
 const showSearchResult = mobiles =>{
+    console.log(mobiles.length);
     showResultDivId.textContent = '';
     // single value display none
     singleDivId.style.display='none';
@@ -42,6 +44,11 @@ const showSearchResult = mobiles =>{
             <img class="img-fluid" src="./images/resultNotFound.gif">
         `;
     }
+   else{
+       console.log(mobiles);
+       if(mobiles.length >21){
+           console.log(654);
+       }
     mobiles.forEach(mobile=>{
         const childDiv = document.createElement('div');
         childDiv.classList.add('col', 'text-center');
@@ -59,6 +66,7 @@ const showSearchResult = mobiles =>{
         `;
         showResultDivId.appendChild(childDiv);
     });
+   }
 }
 // load details
 const loadDetails=ID=>{
@@ -69,16 +77,18 @@ const loadDetails=ID=>{
     
 }
 const showSingle=mobileId=>{
+    showResultDivId.textContent = '';
     console.log(mobileId);
     // hide search all result
-    showResultDivId.style.display='none';
+    // showResultDivId.style.display='none';
     singleDivId.style.display='block';
     // sensor details
     const sensorArray = mobileId.mainFeatures.sensors;
     // new div
     const firstDiv = document.createElement('div');
+    firstDiv.classList.add('px-md-5');
     firstDiv.innerHTML=`
-        <img src="${mobileId.image}" class="card-img-top img-fluid w-50" alt="...">
+        <img src="${mobileId.image}" class="card-img-top w-25 img-fluid" alt="...">
         <div class="card-body">
             <h2 class="card-title">${mobileId.name}</h2>
             <h3 class ="card-text"><img class="feature-images" src="./images/brand-image.png">${mobileId.brand}</h3>
@@ -96,6 +106,7 @@ const showSingle=mobileId=>{
     singleDivId.appendChild(firstDiv);
     // other feature condition
     const secondDiv = document.createElement('div');
+    secondDiv.classList.add('px-md-5');
     if(!mobileId.others){
         console.log(3);
     }
