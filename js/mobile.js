@@ -30,7 +30,6 @@ const showSearchResult = mobiles =>{
         </div>
         `;
         showResultDivId.appendChild(childDiv);
-        console.log(mobile);
     });
 }
 // load details
@@ -42,16 +41,16 @@ const loadDetails=ID=>{
     
 }
 const showSingle=mobileId=>{
+    console.log(mobileId);
     // hide search all result
     showResultDivId.style.display='none';
     singleDivId.style.display='block';
     // sensor details
     const sensorArray = mobileId.mainFeatures.sensors;
-    // sensorArray.forEach(sensor=>{
-    //     console.log(sensor);
-    // });
-
-    singleDivId.innerHTML=`
+    // new div
+    const firstDiv = document.createElement('div');
+    
+    firstDiv.innerHTML=`
         <img src="${mobileId.image}" class="card-img-top img-fluid w-50" alt="...">
         <div class="card-body">
             <h2 class="card-title">${mobileId.name}</h2>
@@ -63,7 +62,20 @@ const showSingle=mobileId=>{
             <p class ="card-tex"><img class="feature-images" src="./images/display.png">${mobileId.mainFeatures.displaySize}</p>
             <p class ="card-tex"><img class="feature-images" src="./images/memory-card.png">${mobileId.mainFeatures.storage}</p>
             <p id="sensorId" class="card-text"><span class="other-feature"> Sensors: </span>${sensorArray.join(', ')}</p>
-            <!-- Other Features -->
+            <div class="card-footer border-0 bg-transparent">
+            </div>
+        </div>
+    `;
+    singleDivId.appendChild(firstDiv);
+    // sensor condition
+    const secondDiv = document.createElement('div');
+    
+    if(!mobileId.others){
+        console.log(3);
+    }
+    else{
+        secondDiv.innerHTML=`
+        <!-- Other Features -->
             <h4 class="card-text text-warning fw-bold">Other Features</h4>
             <p class="card-text"> <span class="other-feature"> Bluetooth: </span> ${mobileId.others.Bluetooth}</p>
             <p class="card-text"><span class="other-feature">GPS: </span> ${mobileId.others.GPS}</p>
@@ -71,10 +83,9 @@ const showSingle=mobileId=>{
             <p class="card-text"><span class="other-feature">Radio: </span> ${mobileId.others.Radio}</p>
             <p class="card-text"><span class="other-feature">USB: </span> ${mobileId.others.USB}</p>
             <p class="card-text"><span class="other-feature">WLAN: </span> ${mobileId.others.WLAN}</p>
-            <div class="card-footer border-0 bg-transparent">
-            </div>
-        </div>
-    `;
+        `;
+    }
+    singleDivId.appendChild(secondDiv);
     console.log(mobileId);
 }
 
