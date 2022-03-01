@@ -1,3 +1,7 @@
+// single value id
+const singleDivId = document.getElementById('showSingle');
+// show result id
+const showResultDivId = document.getElementById('showResults');
 // search function *arrow
 const searchMobile = () =>{
     const searchFieldId = document.getElementById('search-field');
@@ -8,8 +12,8 @@ const searchMobile = () =>{
     .then(data => showSearchResult(data.data));
 }
 const showSearchResult = mobiles =>{
-    // console.log(mobiles);
-    const showResultDivId = document.getElementById('showResults');
+    // single value display none
+    singleDivId.style.display='none';
     mobiles.forEach(mobile=>{
         const childDiv = document.createElement('div');
         childDiv.classList.add('col', 'text-center');
@@ -38,21 +42,24 @@ const loadDetails=ID=>{
     
 }
 const showSingle=mobileId=>{
-    const singleDivId = document.getElementById('showSingle');
+    // hide search all result
+    showResultDivId.style.display='none';
+    singleDivId.style.display='block';
     singleDivId.innerHTML=`
         <img src="${mobileId.image}" class="card-img-top img-fluid w-50" alt="...">
         <div class="card-body">
             <h2 class="card-title">${mobileId.name}</h2>
             <h3 class ="card-text"><img class="feature-images" src="./images/brand-image.png">${mobileId.brand}</h3>
-
+            <!-- Main Features -->
             <h4 class="card-text text-success fw-bold">Main Features</h4>
             <p class ="card-tex">${mobileId.releaseDate}</p>
             <p class ="card-tex"><img class="feature-images" src="./images/cpu.png">${mobileId.mainFeatures.chipSet}</p>
             <p class ="card-tex"><img class="feature-images" src="./images/display.png">${mobileId.mainFeatures.displaySize}</p>
             <p class ="card-tex"><img class="feature-images" src="./images/memory-card.png">${mobileId.mainFeatures.storage}</p>
-
+            <p id="sensorId" class="card-text"></p>
+            <!-- Other Features -->
             <h4 class="card-text text-warning fw-bold">Other Features</h4>
-            <p class="card-text"><span class="other-feature">Bluetooth: </span> ${mobileId.others.Bluetooth}</p>
+            <p class="card-text"> <span class="other-feature"> Bluetooth: </span> ${mobileId.others.Bluetooth}</p>
             <p class="card-text"><span class="other-feature">GPS: </span> ${mobileId.others.GPS}</p>
             <p class="card-text"><span class="other-feature">NFC: </span>${mobileId.others.NFC}</p>
             <p class="card-text"><span class="other-feature">Radio: </span> ${mobileId.others.Radio}</p>
@@ -65,4 +72,3 @@ const showSingle=mobileId=>{
     console.log(mobileId);
 }
 
-{/* <button onclick="loadDetails('${mobileId.slug}')" class="btn btn-primary">Explore</button> */}
