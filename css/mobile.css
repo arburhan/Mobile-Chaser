@@ -19,5 +19,15 @@ body{
     display: none;
 }
 #see-more{
+    padding: 10px 100px;
+    color: white;
+} 
+.showResults{
     display: none;
+}
+/* .seeMoreButtonDiv{
+    display: none;
+} */
+#see-more{
+    padding: 12px 150px;
 }
