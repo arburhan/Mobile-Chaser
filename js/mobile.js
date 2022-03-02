@@ -4,9 +4,12 @@ const singleDivId = document.getElementById('showSingle');
 const showResultDivId = document.getElementById('showResults');
 // error message id 
 const errorMsg = document.getElementById('errorMsg');
+// result 20 div
+const result20Div = document.getElementById('showResults20');
 // search function *arrow
 const searchMobile = () =>{
     singleDivId.textContent = '';
+    result20Div.textContent = '';
     const searchFieldId = document.getElementById('search-field');
     const searchText = searchFieldId.value;
     if(searchText === ''){
@@ -34,6 +37,7 @@ const displayError=(error)=>{
 // search section
 const showSearchResult = mobiles =>{
     console.log(mobiles.length);
+    result20Div.textContent='';
     showResultDivId.textContent = '';
     // single value display none
     singleDivId.style.display='none';
@@ -47,25 +51,42 @@ const showSearchResult = mobiles =>{
    else{
        console.log(mobiles);
        if(mobiles.length >21){
-           console.log(654);
-       }
-    mobiles.forEach(mobile=>{
-        const childDiv = document.createElement('div');
-        childDiv.classList.add('col', 'text-center');
-        childDiv.innerHTML = `
-        <div class="card align-items-center p-3 border-secondary">
-            <img src="${mobile.image}" class="card-img-top w-50 " alt="...">
-            <div class="card-body">
-                <h2 class="card-title">${mobile.phone_name}</h2>
-                <h3 class ="card-title">${mobile.brand}</h3>
-                <div class="card-footer border-0 bg-transparent">
-                    <button onclick="loadDetails('${mobile.slug}')" class="btn btn-primary">Explore</button>
+        const value20 = mobiles.slice(0, 20);
+        value20.forEach(mobile20=>{
+            const childDiv20 = document.createElement('div');
+            childDiv20.classList.add('col', 'text-center');
+            childDiv20.innerHTML = `
+                <div class="card align-items-center p-3 border-secondary">
+                    <img src="${mobile20.image}" class="card-img-top w-50 " alt="...">
+                    <div class="card-body">
+                        <h2 class="card-title">${mobile20.phone_name}</h2>
+                        <h3 class ="card-title">${mobile20.brand}</h3>
+                        <div class="card-footer border-0 bg-transparent">
+                            <button onclick="loadDetails('${mobile20.slug}')" class="btn btn-primary">Explore</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        `;
-        showResultDivId.appendChild(childDiv);
-    });
+            `;  
+            result20Div.appendChild(childDiv20);
+        });
+       }
+    // mobiles.forEach(mobile=>{
+    //     const childDiv = document.createElement('div');
+    //     childDiv.classList.add('col', 'text-center');
+    //     childDiv.innerHTML = `
+    //     <div class="card align-items-center p-3 border-secondary">
+    //         <img src="${mobile.image}" class="card-img-top w-50 " alt="...">
+    //         <div class="card-body">
+    //             <h2 class="card-title">${mobile.phone_name}</h2>
+    //             <h3 class ="card-title">${mobile.brand}</h3>
+    //             <div class="card-footer border-0 bg-transparent">
+    //                 <button onclick="loadDetails('${mobile.slug}')" class="btn btn-primary">Explore</button>
+    //             </div>
+    //         </div>
+    //     </div>
+    //     `;
+    //     showResultDivId.appendChild(childDiv);
+    // });
    }
 }
 // load details
@@ -77,6 +98,7 @@ const loadDetails=ID=>{
     
 }
 const showSingle=mobileId=>{
+    result20Div.textContent='';
     showResultDivId.textContent = '';
     console.log(mobileId);
     // hide search all result
@@ -91,8 +113,8 @@ const showSingle=mobileId=>{
     firstDiv.innerHTML=`
         <img src="${mobileId.image}" class="card-img-top w-25 img-fluid" alt="...">
         <div class="card-body">
-            <h2 class="card-title">${mobileId.name}</h2>
-            <h3 class ="card-text"><img class="feature-images" src="./images/brand-image.png">${mobileId.brand}</h3>
+            <h3 class="card-title">${mobileId.name}</h3>
+            <h4 class ="card-text"><img class="feature-images" src="./images/brand-image.png">${mobileId.brand}</h4>
             <!-- Main Features -->
             <h4 class="card-text text-success fw-bold">Main Features</h4>
             <p class ="card-tex">Release Date: ${mobileId.releaseDate? mobileId.releaseDate:releaseDateNew}</p>
