@@ -25,9 +25,7 @@ body{
 .showResults{
     display: none;
 }
-/* .seeMoreButtonDiv{
-    display: none;
-} */
 #see-more{
     padding: 12px 150px;
+    display: none;
 }

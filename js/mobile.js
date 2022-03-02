@@ -6,10 +6,13 @@ const showResultDivId = document.getElementById('showResults');
 const errorMsg = document.getElementById('errorMsg');
 // result 20 div
 const result20Div = document.getElementById('showResults20');
+// see-more button
+const seeMoreButton = document.getElementById('see-more');
 // search function *arrow
 const searchMobile = () =>{
     singleDivId.textContent = '';
     result20Div.textContent = '';
+    seeMoreButton.style.display='none';
     const searchFieldId = document.getElementById('search-field');
     const searchText = searchFieldId.value;
     if(searchText === ''){
@@ -59,8 +62,8 @@ const showSearchResult = mobiles =>{
                 <div class="card align-items-center p-3 border-secondary">
                     <img src="${mobile20.image}" class="card-img-top w-50 " alt="...">
                     <div class="card-body">
-                        <h2 class="card-title">${mobile20.phone_name}</h2>
-                        <h3 class ="card-title">${mobile20.brand}</h3>
+                        <h4 class="card-title">${mobile20.phone_name}</h4>
+                        <h4 class ="card-title">${mobile20.brand}</h4>
                         <div class="card-footer border-0 bg-transparent">
                             <button onclick="loadDetails('${mobile20.slug}')" class="btn btn-primary">Explore</button>
                         </div>
@@ -68,6 +71,7 @@ const showSearchResult = mobiles =>{
                 </div>
             `;  
             result20Div.appendChild(childDiv20);
+            seeMoreButton.style.display='block';
         });
        }
     // mobiles.forEach(mobile=>{
@@ -100,6 +104,7 @@ const loadDetails=ID=>{
 const showSingle=mobileId=>{
     result20Div.textContent='';
     showResultDivId.textContent = '';
+    seeMoreButton.style.display='none';
     console.log(mobileId);
     // hide search all result
     // showResultDivId.style.display='none';
