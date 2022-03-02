@@ -109,6 +109,10 @@ const loadDetails=ID=>{
     
 }
 const showSingle=mobileId=>{
+    // go top
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    // clean field
     result20Div.textContent='';
     showResultDivId.textContent = '';
     seeMoreButton.style.display='none';
