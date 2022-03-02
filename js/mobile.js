@@ -79,7 +79,7 @@ const showSearchResult = mobiles =>{
         });
        }
        else{
-        myText.style.display='none';
+        
         mobiles.forEach(mobile=>{
             const childDiv = document.createElement('div');
             childDiv.classList.add('col', 'text-center', 'shadow-sm');
@@ -109,7 +109,6 @@ const loadDetails=ID=>{
     
 }
 const showSingle=mobileId=>{
-    myText.style.display='none';
     result20Div.textContent='';
     showResultDivId.textContent = '';
     seeMoreButton.style.display='none';
