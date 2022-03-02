@@ -10,9 +10,11 @@ const result20Div = document.getElementById('showResults20');
 const seeMoreButton = document.getElementById('see-more');
 // search function *arrow
 const searchMobile = () =>{
+    // clear field
     singleDivId.textContent = '';
     result20Div.textContent = '';
     seeMoreButton.style.display='none';
+    singleDivId.style.display='none';
     const searchFieldId = document.getElementById('search-field');
     const searchText = searchFieldId.value;
     if(searchText === ''){
@@ -23,6 +25,7 @@ const searchMobile = () =>{
         `;
     }
     else{
+        singleDivId.style.display='none';
         errorMsg.style.display='none';
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
         fetch(url)
@@ -39,7 +42,7 @@ const displayError=(error)=>{
 }
 // search section
 const showSearchResult = mobiles =>{
-    console.log(mobiles.length);
+    singleDivId.style.display='none';
     result20Div.textContent='';
     showResultDivId.textContent = '';
     // single value display none
@@ -52,7 +55,6 @@ const showSearchResult = mobiles =>{
         `;
     }
    else{
-       console.log(mobiles);
        if(mobiles.length >21){
         const value20 = mobiles.slice(0, 20);
         value20.forEach(mobile20=>{
@@ -107,9 +109,7 @@ const showSingle=mobileId=>{
     result20Div.textContent='';
     showResultDivId.textContent = '';
     seeMoreButton.style.display='none';
-    console.log(mobileId);
     // hide search all result
-    // showResultDivId.style.display='none';
     singleDivId.style.display='block';
     // sensor details
     const sensorArray = mobileId.mainFeatures.sensors;
@@ -153,6 +153,5 @@ const showSingle=mobileId=>{
         `;
     }
     singleDivId.appendChild(secondDiv);
-    console.log(mobileId);
 }
 
