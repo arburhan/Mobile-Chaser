@@ -4,10 +4,12 @@ const singleDivId = document.getElementById('showSingle');
 const showResultDivId = document.getElementById('showResults');
 // error message id 
 const errorMsg = document.getElementById('errorMsg');
+const myText = document.getElementById('myText');
 // result 20 div
 const result20Div = document.getElementById('showResults20');
 // see-more button
 const seeMoreButton = document.getElementById('see-more');
+
 // search function *arrow
 const searchMobile = () =>{
     // clear field
@@ -59,9 +61,9 @@ const showSearchResult = mobiles =>{
         const value20 = mobiles.slice(0, 20);
         value20.forEach(mobile20=>{
             const childDiv20 = document.createElement('div');
-            childDiv20.classList.add('col', 'text-center');
+            childDiv20.classList.add('col', 'text-center', 'shadow-sm-sm');
             childDiv20.innerHTML = `
-                <div class="card align-items-center p-3 border-secondary">
+                <div class="card align-items-center p-3 border-0">
                     <img src="${mobile20.image}" class="card-img-top w-50 " alt="...">
                     <div class="card-body">
                         <h4 class="card-title">${mobile20.phone_name}</h4>
@@ -77,11 +79,12 @@ const showSearchResult = mobiles =>{
         });
        }
        else{
+        myText.style.display='none';
         mobiles.forEach(mobile=>{
             const childDiv = document.createElement('div');
-            childDiv.classList.add('col', 'text-center');
+            childDiv.classList.add('col', 'text-center', 'shadow-sm');
             childDiv.innerHTML = `
-            <div class="card align-items-center p-3 border-secondary">
+            <div class="card align-items-center p-3 border-0">
                 <img src="${mobile.image}" class="card-img-top w-50 " alt="...">
                 <div class="card-body">
                     <h2 class="card-title">${mobile.phone_name}</h2>
@@ -106,6 +109,7 @@ const loadDetails=ID=>{
     
 }
 const showSingle=mobileId=>{
+    myText.style.display='none';
     result20Div.textContent='';
     showResultDivId.textContent = '';
     seeMoreButton.style.display='none';
